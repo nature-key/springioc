@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--<bean id="user" class="com.itserver.User"></bean>-->
+    <!--<bean class="com.itserver.User2" id="user2"></bean>-->
+    <bean id="factory" class="com.itserver.User3Factory"></bean>
+    <bean id="user3" factory-bean="factory" factory-method="getUser3" ></bean>
+</beans>
