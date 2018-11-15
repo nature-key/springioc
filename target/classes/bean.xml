@@ -3,8 +3,20 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <!--<bean id="user" class="com.itserver.User"></bean>-->
-    <!--<bean class="com.itserver.User2" id="user2"></bean>-->
-    <bean id="factory" class="com.itserver.User3Factory"></bean>
-    <bean id="user3" factory-bean="factory" factory-method="getUser3" ></bean>
+    <!--<bean id="user" class="com.itserver.User" scope="prototype"></bean>-->
+    <!--<bean class="com.itserver.User2Factory" id="user2" factory-method="getUser2"></bean>-->
+    <!--<bean id="factory" class="com.itserver.User3Factory" ></bean>-->
+    <!--<bean id="user3" factory-bean="factory" factory-method="getUser3" ></bean>-->
+    <!--<bean id="dome" class="com.itserver.PropertyDome">-->
+        <!--<constructor-arg name="name" value="wangli"></constructor-arg>-->
+    <!--</bean>-->
+
+    <!--<bean id="book" class="com.itserver.Book">-->
+        <!--<property name="name" value="nicai"></property>-->
+    <!--</bean>-->
+
+    <bean id="userDao" class="com.itserver.UserDao"></bean>
+    <bean id="userService" class="com.itserver.UserService">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
 </beans>
