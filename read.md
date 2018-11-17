@@ -91,19 +91,96 @@ bean常用属性
    <bean id="userService" class="com.itserver.UserService">
        <property name="userDao" ref="userDao"></property>
    </bean>
+  
+  p名称空间
+  xmlns:p="http://www.springframework.org/schema/p"
+  <bean id="person" class="com.itserver.Person" p:pname="lucy">
+  
    
-   14
+  复杂对象的注入
+     list
+     map
+     arr
+     properties
+<bean id="person" class="com.itserver.Person">
+       <property name="arrs">
+           <list>
+               <value>小李</value>
+               <value>小王</value>
+               <value>校长</value>
+           </list>
+       </property>
+
+       <property name="list">
+           <list>
+               <value>网易</value>
+               <value>王二</value>
+               <value>网三</value>
+           </list>
+       </property>
+
+       <property name="map">
+           <map>
+               <entry key="one" value="mapone"></entry>
+               <entry key="two" value="mapotwo"></entry>
+               <entry key="three" value="mapthree"></entry>
+           </map>
+       </property>
+
+       <property name="properties">
+           <props>
+               <prop key="drive">com.mysql.jdbc.Driver</prop>
+               <prop key="username">root</prop>
+           </props>
+       </property>
+   </bean>  
+ 
+ IOC和DI
+ 
+ IOC 控制反转 ，把创建对象让spring创建
+ DI 依赖注入 给属性设置值
+ 
+ 区别 依赖注入不能单独存在，是建立在IOC基础之上
+ 
+ 
+    
+spring web原理
+
+1.加载spring核心配置文件
+  ApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
+          new 一个独享效率很低
+          
+ 实现原理
+ 
+  1.servletContext对象
+  2。监听器
+  
+  3具体实现
+  服务器启动的时候，会为每一个项目建立一个servetcotent
+  在servletcontext对象创建的时候，使用监听器可以具体servletcontext什么时候创建
+  在创建servletcontext时候，加载spring配置文件，把配置的对象放到servletcontext
+  获取对象的时候直接在serlvercontext得到 getAttribute
 
 
+注解方式IOC
+ 导入包
+ 约束
+<context:component-scan base-package="com.itserver.day1"></context:component-scan>
+
+四种创建对象
+ 1.Component
+ 2.controller  web
+ 3.service  业务
+ 4.reportity  持久层
+
+scope 设置单例 多实例
+
+注入属性
+
+ 使用注解@Autowired注入 不需要set
+ 也可以使用@Resource注入
 
 
-
-
-
-
-
-
-
-
+22
 
 
