@@ -180,7 +180,75 @@ scope 设置单例 多实例
  使用注解@Autowired注入 不需要set
  也可以使用@Resource注入
 
+AOP
+面向切面 不修改源码扩展功能
 
-22
+1.
+ public class user{
+   public void add(){
+     //添加日志
+   }
+ }
 
+  修改代码
+2.纵向抽象编程
 
+  抽象一个类
+  继承这个类
+  使用这个父类方法
+  完成扩展功能
+  但是父类变化，子类也要相应的改变，
+    
+ 实现原理
+ 
+  1.有接口
+   jdk动态代理
+   
+   实现一个和要扩展的功能的是实现接口的类一个代理对象，实现相同的功能，在代理对象上功能增强
+   
+   
+  2.无接口
+  cglib动态代理
+  
+   继承类的子类实现代理对像，子类调用父类的方法实现增强
+    
+AOP概念
+
+ 连接点 joinpoint  每一个类中有好多方法。每一个方法都可进行增强，把这些方法称为链接点
+ 切入点 pointcut 在实际上增强了的方法，如只给add和delete方法增强功能，把这些叫做切入点
+ 增强/通知 增强的逻辑称为增强，如日志的功能
+  前置通知
+  后置通知
+  异常通知
+  环绕通知
+  最终通知
+ 切面 advice 把增强应用到切入点的过程叫做切面，把日志功能放到add的过程
+ 引介 在不修改代码下，给类添加属性和方法
+ 目标 就是你增强方法的的类
+ 织入 把增强应用到目标对象的过程
+ 代理 jdk cglib代理
+ 
+ 
+使用表达式配置切入点
+切入点 实际增强的的方法
+
+ececution(<>)
+execation(* com.itying.Book.add(..))  
+execation(* com.itying.Book.*(..))  
+execation(* *.*(..))  
+execation(* save*(..))
+
+配置aop
+<aop:config>
+    <!-- 切点-->
+    <aop:pointcut id="pointcut" expression="execution(* com.itserver.aop.*.*(..))"></aop:pointcut>
+    <!-- 切面
+      把增强mybook类的方法 before 应用到pointcut中
+    -->
+    <aop:aspect ref="mybook">
+        <aop:before method="before" pointcut-ref="pointcut"></aop:before>
+    </aop:aspect>
+
+</aop:config>
+
+34

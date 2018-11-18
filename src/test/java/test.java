@@ -55,5 +55,17 @@ public class test {
         com.itserver.day1.UserService userService = (com.itserver.day1.UserService) context.getBean("userService");
         userService.add();
     }
+    @Test
+    public void test6() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("bean2.xml");
+        com.itserver.day2.UserService userService = (com.itserver.day2.UserService) context.getBean("userService");
+        userService.test();
+    }
+    @Test
+    public void test7() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("bean3.xml");
+        com.itserver.aop.Book book = (com.itserver.aop.Book) context.getBean("book");
+        book.test();
+    }
 
 }
