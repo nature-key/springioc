@@ -251,4 +251,17 @@ execation(* save*(..))
 
 </aop:config>
 
-34
+注解
+
+1.开启代理
+ <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+ 
+@Aspect
+public class MyBook {
+  @Before(value = "execution(* com.aop.Book.*(..))")
+  public void before(){
+      System.out.println("before.....");
+  }
+}
+
+41
