@@ -1,4 +1,5 @@
 import com.itserver.*;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -105,6 +106,8 @@ public class test {
 
     @Test
     public void find() {
+//        ComboPooledDataSource
+
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/test");
@@ -114,9 +117,22 @@ public class test {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 //        String sql = "select *  from  user where username=?";
 //        com.aop.User user = jdbcTemplate.queryForObject(sql, new MyRowMapper(), "lisi");
-        String sql ="select *  from  user";
-        List<com.aop.User> user = jdbcTemplate.query(sql,new MyRowMapper());
+        String sql = "select *  from  user";
+        List<com.aop.User> user = jdbcTemplate.query(sql, new MyRowMapper());
         System.out.println(user);
+    }
+
+    @Test
+    public void test9(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("bean6.xml");
+       com.c3p0.UserService  userService =(com.c3p0.UserService) context.getBean("userService");
+        userService.test();
+    }
+    @Test
+    public void test0(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("bean7.xml");
+       com.tx.OrderService  orderService =(com.tx.OrderService) context.getBean("orderService");
+        orderService.account();
     }
 
 

@@ -263,5 +263,44 @@ public class MyBook {
       System.out.println("before.....");
   }
 }
+连接池配置
+<dependency>
+        <groupId>c3p0</groupId>
+        <artifactId>c3p0</artifactId>
+        <version>0.9.1.2</version>
+    </dependency>
+    <dependency>
+        <groupId>commons-dbcp</groupId>
+        <artifactId>commons-dbcp</artifactId>
+        <version>1.4</version>
+    </dependency>
+    
+    
+事物处理
 
-41
+什么是事物
+要么成功是么失败
+事物特行
+acid
+原子性
+一致性
+隔离性
+持久性
+
+解决度问题
+
+
+spring事物管理
+
+1.编程时事物管理
+2，生声明事务管理
+   基于xml配置
+   基于注解
+   
+事物api   
+       
+       
+ 事物配置
+ 不通的dao框架不通的实现类
+ 
+ 46      
