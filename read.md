@@ -303,4 +303,33 @@ spring事物管理
  事物配置
  不通的dao框架不通的实现类
  
- 46      
+ 46
+ 
+ 基于xml实现事物
+ 1.配置事物管理器
+       <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+          <property name="dataSource" ref="dataSource"></property>
+      </bean>
+ 2.配置增强事物
+     <tx:advice id="txAdvice" transaction-manager="transactionManager">
+         <tx:attributes>
+             <tx:method name="acc*"/>
+         </tx:attributes>
+     </tx:advice>
+ 3.配置切面 
+    <aop:config>
+         <aop:pointcut id="pointcut" expression="execution(* com.tx.OrderService.*(..))"></aop:pointcut>
+         <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"></aop:advisor>
+     </aop:config> 
+     
+ 基于注解配置事物
+ 1.配置事物管理器
+ <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+           <property name="dataSource" ref="dataSource"></property>
+       </bean>
+ 2.开启事物  
+ <!--开启事物注解-->
+     <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+ 
+ 3在使用的类上架注解
+ @Transactional           
